@@ -48,8 +48,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function(){
+Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
+Route::get('/dashboard/posts/check-slug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
